@@ -15,7 +15,8 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
 
-    private final WeightedQuickUnionUF weightedQuickUnionUF;
+    private final WeightedQuickUnionUF weightedQuickUnionUFA;
+    private final WeightedQuickUnionUF weightedQuickUnionUFB;
     private final int size;
     private int openSites;
     private boolean[] sitesStatus;
@@ -28,10 +29,12 @@ public class Percolation {
         openSites = 0;
         sitesStatus = new boolean[n * n];
         size = n;
-        weightedQuickUnionUF = new WeightedQuickUnionUF(n * n + 2);
+        weightedQuickUnionUFA = new WeightedQuickUnionUF(n * n + 2);
+        weightedQuickUnionUFB = new WeightedQuickUnionUF(n * n + 1);
         for (int i = 1; i <= n; i++) {
-            weightedQuickUnionUF.union(0, i);
-            weightedQuickUnionUF.union(n * n + 1, n * n + 1 - i);
+            weightedQuickUnionUFA.union(0, i);
+            weightedQuickUnionUFB.union(0, i);
+            weightedQuickUnionUFA.union(n * n + 1, n * n + 1 - i);
         }
     }
 
@@ -64,7 +67,7 @@ public class Percolation {
         if (!isIndexValid(row, col)) {
             throw new IllegalArgumentException("index not valid");
         }
-        return isOpen(row, col) && weightedQuickUnionUF.connected(0, indexCal(row, col));
+        return isOpen(row, col) && weightedQuickUnionUFB.connected(0, indexCal(row, col));
     }
 
     // number of open sites
@@ -77,12 +80,13 @@ public class Percolation {
         if (size == 1) {
             return isOpen(1, 1);
         }
-        return weightedQuickUnionUF.connected(0, size * size + 1);
+        return weightedQuickUnionUFA.connected(0, size * size + 1);
     }
 
     private void connect(int index, int row, int col) {
         if (isIndexValid(row, col) && isOpen(row, col)) {
-            weightedQuickUnionUF.union(index, indexCal(row, col));
+            weightedQuickUnionUFA.union(index, indexCal(row, col));
+            weightedQuickUnionUFB.union(index, indexCal(row, col));
         }
     }
 

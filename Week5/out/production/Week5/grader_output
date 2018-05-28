@@ -1,0 +1,96 @@
+See the Assessment Guide for information on how to interpret this report.
+
+ASSESSMENT SUMMARY
+
+Compilation:  PASSED
+API:          PASSED
+
+Findbugs:     PASSED
+PMD:          PASSED
+Checkstyle:   FAILED (1 error, 10 warnings)
+
+Correctness:  No tests available for autograding.
+Memory:       No tests available for autograding.
+Timing:       No tests available for autograding.
+
+Aggregate score: 10.00%
+[Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
+
+ASSESSMENT DETAILS
+
+The following files were submitted:
+----------------------------------
+1.8K May 25 07:54 KdTree.java
+2.6K May 25 07:54 PointSET.java
+
+
+********************************************************************************
+*  COMPILING
+********************************************************************************
+
+
+% javac PointSET.java
+*-----------------------------------------------------------
+
+% javac KdTree.java
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+Checking the APIs of your programs.
+*-----------------------------------------------------------
+PointSET:
+
+KdTree:
+
+================================================================
+
+
+********************************************************************************
+*  CHECKING STYLE AND COMMON BUG PATTERNS
+********************************************************************************
+
+
+% findbugs *.class
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+% pmd .
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+% checkstyle *.java
+*-----------------------------------------------------------
+
+% custom checkstyle checks for PointSET.java
+*-----------------------------------------------------------
+[WARN] PointSET.java:22:38: Do not draw to standard drawing in 'PointSET()'. [SideEffect]
+[WARN] PointSET.java:23:26: Do not draw to standard drawing in 'PointSET()'. [SideEffect]
+[WARN] PointSET.java:23:30: The numeric literal '32768' appears to be unnecessary. [NumericLiteral]
+[WARN] PointSET.java:24:26: Do not draw to standard drawing in 'PointSET()'. [SideEffect]
+[WARN] PointSET.java:24:30: The numeric literal '32768' appears to be unnecessary. [NumericLiteral]
+Checkstyle ends with 0 errors and 5 warnings.
+
+% custom checkstyle checks for KdTree.java
+*-----------------------------------------------------------
+[ERROR] KdTree.java:1: You must declare a nested class to represent kd-tree nodes. [Design]
+[WARN] KdTree.java:17:38: Do not draw to standard drawing in 'KdTree()'. [SideEffect]
+[WARN] KdTree.java:18:26: Do not draw to standard drawing in 'KdTree()'. [SideEffect]
+[WARN] KdTree.java:18:30: The numeric literal '32768' appears to be unnecessary. [NumericLiteral]
+[WARN] KdTree.java:19:26: Do not draw to standard drawing in 'KdTree()'. [SideEffect]
+[WARN] KdTree.java:19:30: The numeric literal '32768' appears to be unnecessary. [NumericLiteral]
+Checkstyle ends with 1 error and 5 warnings.
+
+
+================================================================
+
+
+ABORTING: you must fix any Checkstyle errors (not warnings).
